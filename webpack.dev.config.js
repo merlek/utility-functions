@@ -5,7 +5,7 @@ module.exports = {
    entry: {
       'utility-functions': './src/utility-functions.ts'
    },
-   devtool: 'source-map',
+   devtool: 'inline-source-map',
    mode: 'development',
    module: {
       rules: [

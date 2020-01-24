@@ -95,6 +95,7 @@ describe('utility-functions', () => {
 
   it('range creates an array of intergers from n to m', () => {
     expect(range(1)(5)).toEqual([1, 2, 3, 4]);
+    expect(range(0)(100).length).toBe(100);
   });
 
   it('repeat creates an array with a value repeated n times', () => {
