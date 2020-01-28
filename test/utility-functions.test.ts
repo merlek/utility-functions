@@ -1,22 +1,23 @@
 import {
+  adjust,
   dropFirst,
   dropLast,
   id,
   keep,
   map,
   mapi,
-  adjust,
+  mapRange,
   merge,
   mod,
   objOf,
   pipe,
   prop,
+  random,
+  randomInt,
   range,
   repeat,
-  randomInt,
-  random,
   spec,
-  mapRange
+  shuffle
 } from '../src/utility-functions';
 
 describe('utility-functions', () => {
@@ -29,7 +30,7 @@ describe('utility-functions', () => {
   const minusOne = (x: number) => x - 1;
   const addI = (x: number) => (i: number) => x + i;
 
-  afterAll(function() {
+  afterAll(() => {
     expect(array).toEqual([1, 2, 3, 4]);
     expect(obj).toEqual({
       cat: 'cat',
@@ -110,7 +111,7 @@ describe('utility-functions', () => {
     const min = 0;
     const max = 10;
     for (let i = 0; i < 100; i++) {
-      const result = randomInt(min)(max);
+      const result = randomInt(min, max);
       expect(result).toBeGreaterThanOrEqual(min);
       expect(result).toBeLessThan(max);
       expect(Number.isInteger(result)).toBeTrue();
@@ -150,6 +151,12 @@ describe('utility-functions', () => {
   });
 
   it('mapRange maps a value from one range to another', () => {
-    expect(mapRange(2)(1, 3)(2, 4)).toBe(3);
+    expect(mapRange(2, 1, 3, 2, 4)).toBe(3);
+  });
+
+  it('shuffle shuffles an array in place', () => {
+    const shuffled = shuffle([...array]);
+    expect(shuffled).not.toEqual(array);
+    expect(shuffled.sort()).toEqual([...array].sort());
   });
 });

@@ -6,6 +6,7 @@
    "types": "dist/utility-functions.d.ts",
    "scripts": {
       "test": "karma start karma.conf.js",
+      "test:watch": "npm run test -- --single-run false",
       "clean": "rm -rf dist",
       "start": "webpack-dev-server --watch --config webpack.dev.config.js",
       "build": "npm run build:dev",
@@ -20,8 +21,8 @@
       "preversion": "npm run lint",
       "version": "npm run format && npm run git-src && npm run build:prd && npm run git-dist",
       "postversion": "git push && git push --tags",
-      "git-dist":"git add -A dist",
-      "git-src":"git add -A src"
+      "git-dist": "git add -A dist",
+      "git-src": "git add -A src"
    },
    "repository": {
       "type": "git",

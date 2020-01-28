@@ -128,10 +128,26 @@ export function repeat<T>(c: T): (n: number) => T[] {
 /**
  * Returns a random integer from `min` to `max` (exclusive)
  * @param min - the minimum value
- * @returns A function that receives `max`
+ * @param max - the maxmimum value
+ * @returns A random value between `min` and `max`
  */
-export function randomInt(min: number): (max: number) => number {
-  return (max: number) => Math.floor(Math.random() * max) + min;
+// tslint:disable-next-line: unified-signatures
+export function randomInt(min: number, max: number): number;
+/**
+ * Returns a random integer from 0 to `max` (exclusive)
+ * @param max - the maxmimum value
+ * @returns A random value between 0 and `max`
+ */
+export function randomInt(max: number): number;
+
+export function randomInt(a: number, b?: number): number {
+  let max = a;
+  let min = 0;
+  if (b !== undefined) {
+    max = b;
+    min = a;
+  }
+  return Math.floor(Math.random() * max) + min;
 }
 /**
  * Returns a random number from `min` to `max` (exclusive)
@@ -147,7 +163,7 @@ export function random(min: number): (max: number) => number;
 export function random<T>(array: T[]): T;
 export function random<T>(param1: T[] | number) {
   if (Array.isArray(param1)) {
-    return param1[randomInt(0)(param1.length)];
+    return param1[randomInt(0, param1.length)];
   } else if (typeof param1 === 'number') {
     return (max: number) => Math.random() * max + param1;
   }
@@ -187,7 +203,23 @@ export function spec<F extends (v: any) => any>(fnObj: {
  * @param x - the value to map
  * @returns A function that receives an input range and then an output range
  */
-export const mapRange = (x: number) => (i_start: number, i_end: number) => (
+export function mapRange(
+  x: number,
+  i_start: number,
+  i_end: number,
   o_start: number,
   o_end: number
-) => ((x - i_start) * (o_end - o_start)) / (i_end - i_start) + o_start;
+): number {
+  return ((x - i_start) * (o_end - o_start)) / (i_end - i_start) + o_start;
+}
+/**
+ * Shuffles array in place. ES6 version
+ * @param {Array} a - items An array containing the items.
+ */
+export function shuffle(a: any[]) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}

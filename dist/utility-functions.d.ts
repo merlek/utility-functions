@@ -92,9 +92,16 @@ export declare function repeat<T>(c: T): (n: number) => T[];
 /**
  * Returns a random integer from `min` to `max` (exclusive)
  * @param min - the minimum value
- * @returns A function that receives `max`
+ * @param max - the maxmimum value
+ * @returns A random value between `min` and `max`
  */
-export declare function randomInt(min: number): (max: number) => number;
+export declare function randomInt(min: number, max: number): number;
+/**
+ * Returns a random integer from 0 to `max` (exclusive)
+ * @param max - the maxmimum value
+ * @returns A random value between 0 and `max`
+ */
+export declare function randomInt(max: number): number;
 /**
  * Returns a random number from `min` to `max` (exclusive)
  * @param min - the minimum value
@@ -134,5 +141,10 @@ export declare function spec<F extends (v: any) => any>(fnObj: {
  * @param x - the value to map
  * @returns A function that receives an input range and then an output range
  */
-export declare const mapRange: (x: number) => (i_start: number, i_end: number) => (o_start: number, o_end: number) => number;
+export declare function mapRange(x: number, i_start: number, i_end: number, o_start: number, o_end: number): number;
+/**
+ * Shuffles array in place. ES6 version
+ * @param {Array} a - items An array containing the items.
+ */
+export declare function shuffle(a: any[]): any[];
 //# sourceMappingURL=utility-functions.d.ts.map
