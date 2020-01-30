@@ -113,7 +113,7 @@ export declare function random(min: number): (max: number) => number;
  * @param array - the array value
  * @returns A random element from `array`
  */
-export declare function random<T>(array: T[]): T;
+export declare function random<T>(array: ReadonlyArray<T>): T;
 /**
  * Create an object from a mapping of functions
  *

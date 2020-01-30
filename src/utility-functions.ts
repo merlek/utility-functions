@@ -160,8 +160,8 @@ export function random(min: number): (max: number) => number;
  * @param array - the array value
  * @returns A random element from `array`
  */
-export function random<T>(array: T[]): T;
-export function random<T>(param1: T[] | number) {
+export function random<T>(array: ReadonlyArray<T>): T;
+export function random<T>(param1: ReadonlyArray<T> | number) {
   if (Array.isArray(param1)) {
     return param1[randomInt(0, param1.length)];
   } else if (typeof param1 === 'number') {
